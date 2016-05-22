@@ -1,0 +1,43 @@
+<?php
+    if (!empty($errors)):
+       foreach($errors as $e):
+             echo "$e <br/>";
+        endforeach;
+    endif;
+?>
+
+<form method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
+    <input type="hidden" name="action" value="reg">
+    <table>
+        <tr>
+            <th><label for="eesnimi">Eesnimi</label></th>
+            <td><input type="text" id="eesnimi" name="eesnimi" placeholder="Eesnimi"></td>
+        </tr>
+        <tr>
+            <th><label for="perekonnanimi">Perekonnanimi</label></th>
+            <td><input type="text" id="perekonnanimi" name="perekonnanimi" placeholder="Perekonnanimi"></td>
+        </tr>
+        <tr>
+            <th>Sugu</th>
+            <td>
+                <label><input type="radio" name="sugu" value="m">Mees</label>
+                <label><input type="radio" name="sugu" value="n">Naine</label>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="kasutajanimi">Kasutajanimi</label></th>
+            <td><input type="text" id="kasutajanimi" name="kasutajanimi" placeholder="Kasutajanimi"></td>
+        </tr>
+        <tr>
+            <th><label for="parool">Parool</label></th>
+            <td><input type="password" id="parool" name="parool" placeholder="Parool"></td>
+        </tr>
+        <tr>
+            <th><label for="parool2">Korda parooli</label></th>
+            <td><input type="password" id="parool2" name="parool2" placeholder="Parool"></td>
+        </tr>
+        <tr colspan="2">
+            <td><button type="submit">Registreeri</button></td>
+        </tr>
+    </table>
+</form>

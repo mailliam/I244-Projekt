@@ -1,0 +1,15 @@
+Mida tuleb kontrollida:
+
+Kõik lahtrid, kuhu midagi saab sisestada: htmlspecialchars
+Kontrollida ka sellist versiooni, kus kasutaja muudab jõuga sisu
+Tüübikontrollid, et kasutaja ei saaks saata vale tüüpi andmeid andmebaasi läbi developers tooli
+
+Andmebaasibäringud:mysqliescape
+
+Kui sisselogitud/sisselogimata kasutaja sisestab url-i sellise aadressi, mida ta ei peaks või ei ole õigusi näha, et ei näeks ka
+
+Mis märgid on kasutajanimes lubatud.
+Kui pikk peaks parool olema (mitmemegabaidised paroolid ära keelata)
+Näiteks lubada mingi 500 sümbolit vms. Pikast räsi arvutamine võtab aega ja võib kogu saidi maha tõmmata.
+
+Javascripti saab kasutada enne submit nupu vajutamist info kontrollimiseks.

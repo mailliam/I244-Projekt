@@ -2,11 +2,11 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Sisselogimine</title>
+        <title>Registreerimine</title>
     </head>
 
     <body>
-        <form method="post" action="vorm.php">
+        <form method="POST" action="vorm.php">
             <table>
                 <tr>
                     <th>Kasutajanimi</th>
@@ -15,6 +15,13 @@
                 <tr>
                     <th>Parool</th>
                     <td><input type="password" name="parool" placeholder="Parool"></td>
+                </tr>
+                <tr>
+                    <th>Korda parooli</th>
+                    <td><input type="password" name="parool2" placeholder="Parool"></td>
+                </tr>
+                <tr colspan="2">
+                    <td><button type="submit">Registreeri</button></td>
                 </tr>
             </table>
         </form>
