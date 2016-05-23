@@ -7,7 +7,7 @@
 
     <body>
         <?php
-            if (!empty($errors)):
+            if (!empty($errors['vaade'])):
 	           foreach($errors as $e):
 		             echo "$e <br/>";
 	            endforeach;
@@ -16,11 +16,22 @@
 
         <div class="menyy">
             <ul>
+                <?php if (empty($_SESSION['login'])):?>
                 <li>
                     <a href="<?= $_SERVER['PHP_SELF'];?>?view=log">Sisselogimine</a>
                 </li>
                 <li>
                     <a href="<?= $_SERVER['PHP_SELF'];?>?view=reg">Registreerimine</a>
                 </li>
+                <?php endif; ?>
+
+                <?php if (!empty($_SESSION['login'])):?>
+                <li>
+                    <a href="<?= $_SERVER['PHP_SELF'];?>?view=new">Uus ost</a>
+                </li>
+                <li>
+                    <a href="<?= $_SERVER['PHP_SELF'];?>?view=query">Päringud</a>
+                </li>
+                <?php endif; ?>
             </ul>
         </div>

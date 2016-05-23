@@ -1,5 +1,5 @@
 <?php
-    if (!empty($errors)):
+    if (!empty($errors['valjad_taitmata']) || !empty($errors['probleem_kasutajanimega'])):
        foreach($errors as $e):
              echo "$e <br/>";
         endforeach;
@@ -16,13 +16,6 @@
         <tr>
             <th><label for="perekonnanimi">Perekonnanimi</label></th>
             <td><input type="text" id="perekonnanimi" name="perekonnanimi" placeholder="Perekonnanimi"></td>
-        </tr>
-        <tr>
-            <th>Sugu</th>
-            <td>
-                <label><input type="radio" name="sugu" value="m">Mees</label>
-                <label><input type="radio" name="sugu" value="n">Naine</label>
-            </td>
         </tr>
         <tr>
             <th><label for="kasutajanimi">Kasutajanimi</label></th>
