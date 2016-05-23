@@ -1,4 +1,4 @@
-/*Tabelid:
+﻿/*Tabelid:
 
 mkeerus_pr_kasutajad
 
@@ -8,10 +8,12 @@ Veerud:
   * parool
   * eesnimi
   * perekonnanimi
-  * sugu (et oleks �ks radiobutton)
-  * reg_aeg datetime
   * muut_aeg timestamp
 
+
+Neid hetkel pole:
+  * sugu (et oleks �ks radiobutton)
+  * reg_aeg datetime
 
   */
 
@@ -26,10 +28,31 @@ Veerud:
       muut_aeg timestamp NOT NULL
   );
 
-  
-
 
 mkeerus_pr_ostud
 
+/**
+Veerud:
+* id
+* ostja
+* pood
+* kuupäev
+* summa
+
+
+*/
 
 mkeerus_pr_osturead
+/**
+Veerud:
+* id
+* ostu id
+* kaup
+* kategooria
+* kogus
+* hind
+* rea summa
+
+
+
+*/
