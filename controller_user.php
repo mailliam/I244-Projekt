@@ -5,23 +5,25 @@ function c_user_register() {
     $errors = array();
 
     if(empty($_POST['eesnimi']) || empty($_POST['perekonnanimi']) ||
-    empty($_POST['kasutajanimi']) || empty($_POST['parool'])) {
+    empty($_POST['kasutajanimi']) || empty($_POST['parool']) || empty($_POST['parool2'])) {
 
-        $errors['valjad_taitmata']='Registreerimiseks peavad olema kõik väljad täidetud';
+        $errors['valjad_taitmata']='Registreerimiseks peavad olema kõik väljad täidetud.';
 
         include_once('view/head.html');
         include_once('view/reg.html');
         include_once('view/foot.html');
 
         return false;
+
     } else {
         $eesnimi = $_POST['eesnimi'];
         $perekonnanimi = $_POST['perekonnanimi'];
         $kasutajanimi = $_POST['kasutajanimi'];
         $parool = $_POST['parool'];
+        $parool2 = $_POST['parool2'];
 
-        if(model_user_exists($kasutajanimi)) {
-            $errors['probleem_kasutajanimega']=model_user_exists($kasutajanimi);
+        if($parool != $parool2) {
+            $errors['valjad_taitmata'] = 'Parooli kontrollsisestus ei klapi, palun sisesta uuesti.';
             include_once('view/head.html');
             include_once('view/reg.html');
             include_once('view/foot.html');
@@ -29,7 +31,17 @@ function c_user_register() {
             return false;
 
         } else {
-            return model_user_add($eesnimi, $perekonnanimi, $kasutajanimi, $parool);
+            if(model_user_exists($kasutajanimi)) {
+                $errors['probleem_kasutajanimega']='Kasutajanimi juba olemas, palun vali uus.';
+                include_once('view/head.html');
+                include_once('view/reg.html');
+                include_once('view/foot.html');
+
+                return false;
+
+            } else {
+                return model_user_add($eesnimi, $perekonnanimi, $kasutajanimi, $parool);
+            }
         }
     }
 }

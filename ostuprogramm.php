@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
                 break;
 
-                case 'log':
+                case 'login':
                     if(c_user_login()) {
                         header('Location: ' . $_SERVER['PHP_SELF']);
                     };

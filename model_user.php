@@ -31,7 +31,7 @@ function model_user_get($kasutajanimi, $parool) {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_bind_result($stmt, $id, $hash);
     mysqli_stmt_fetch($stmt);
-    mysqli_stmt_close();
+    mysqli_stmt_close($stmt);
 
     if(password_verify($parool, $hash)) {
         return $id;
