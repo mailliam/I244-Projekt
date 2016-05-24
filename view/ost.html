@@ -6,7 +6,7 @@
     endif;
 ?>
 
-<form method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
+<form id="ostulisamine" method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
     <input type="hidden" name="action" value="ost">
     <table id="ostupais">
         <tr>
@@ -19,7 +19,7 @@
             <td><input type="text" id="ostja" name="ostja" placeholder="Ostja"></td>
             <td><input type="text" id="pood" name="pood" placeholder="Pood"></td>
             <td><input type="date" id="kuupaev" name="kuupaev"></td>
-            <td><input type="number" step="0.01" id="ostusumma" name="ostusumma" readonly></td>
+            <td><div id="ostusumma" name="ostusumma[]"></div></td>
             <td rowspan="2"><button type="submit">Salvesta ost</button></td>
         </tr>
     </table>
@@ -27,21 +27,28 @@
     <hr>
 
     <table id="ostukorv">
-        <tr id="pealkiri">
-            <th>Kaup</th>
-            <th>Kategooria</th>
-            <th>Kogus</th>
-            <th>Hind</th>
-            <th>Summa</th>
-        </tr>
-        <tr id="osturida">
-            <td><input type="text" id="kaup" name="kaup"></td>
-            <td><input type="text" id="kategooria" name="kategooria"></td>
-            <td><input type="number" step="0.001" id="kogus" name="kogus"></td>
-            <td><input type="number" step="0.01" id="hind" name="hind"></td>
-            <td><input type="number" step="0.01" id="summa" name="summa" readonly></td>
-        </tr>
+        <thead>
+            <tr id="pealkiri">
+                <th>Kaup</th>
+                <th>Kategooria</th>
+                <th>Kogus</th>
+                <th>Hind</th>
+                <th>Summa</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr id="osturida">
+                <td><input type="text" id="kaup" name="kaup[]"></td>
+                <td><input type="text" id="kategooria" name="kategooria[]"></td>
+                <td><input type="number" step="0.001" id="kogus" name="kogus[]" oninput="reaSumma()"></td>
+                <td><input type="number" step="0.01" id="hind" name="hind[]" oninput="reaSumma()"></td>
+                <td><div id="summa" name="summa[]"></div></td>
+            </tr>
+        </tbody>
 
     </table>
 
 </form>
+
+<script src="script/ost.js"></script>

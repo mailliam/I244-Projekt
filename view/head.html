@@ -35,3 +35,10 @@
                 <?php endif; ?>
             </ul>
         </div>
+
+        <?php if (!empty($_SESSION['login'])):?>
+        <form method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
+            <input type="hidden" name="action" value="logout">
+            <button type="submit">Logi välja</button>
+        </form>
+        <?php endif; ?>

@@ -11,5 +11,13 @@ Kui sisselogitud/sisselogimata kasutaja sisestab url-i sellise aadressi, mida ta
 Mis märgid on kasutajanimes lubatud.
 Kui pikk peaks parool olema (mitmemegabaidised paroolid ära keelata)
 Näiteks lubada mingi 500 sümbolit vms. Pikast räsi arvutamine võtab aega ja võib kogu saidi maha tõmmata.
+Lisada juurde kontroll, et kasutaja ei sisestaks liiga suuri andmeid kuhu iganes.
 
 Javascripti saab kasutada enne submit nupu vajutamist info kontrollimiseks.
+
+Ostu salvestamisel kontrollida, kas summa võrdub ikka kogus*hind, juhuks kui kasutaja peaks seal midagi ise ära vussima?
+
+Vaadete title'd panna automaatseks
+Kasutaja peaks ka punktiga numbreid saama sisestada
+
+
