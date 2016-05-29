@@ -1,0 +1,72 @@
+<?php
+    if (!empty($errors)):
+       foreach($errors as $e):
+             echo "$e <br/>";
+        endforeach;
+    endif;
+?>
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+//Script, et saaks div elemendi seest postida: http://stackoverflow.com/questions/21621568/post-for-text-in-div-elements
+    $(document).ready(function() {
+       $("#add_purchase").on("submit", function () {
+            var p_amount = $('#purchase_amount').text();
+            $(this).append("<input type='hidden' name='purchase_amount' value=' " + p_amount + " '/>");
+
+                $(".amount").each(function(index) {
+                    var r_amount = $('.amount').text();
+                    $(this).append("<input type='hidden' name='data["+index+"][amount]' value=' " + r_amount + " '/>");
+                });
+
+        });
+    });
+
+</script>
+
+<form id="add_purchase" method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
+    <input type="hidden" name="action" value="purchase">
+    <table id="purchase_header">
+        <tr>
+            <th><label for="buyer">Ostja</label></th>
+            <th><label for="store">Pood</label></th>
+            <th><label for="date">Kuupäev</label></th>
+            <th><label for="purchase_amount">Ostu summa kokku</label></th>
+        </tr>
+        <tr>
+            <td><input type="text" id="buyer" name="buyer" placeholder="Ostja"></td>
+            <td><input type="text" id="store" name="store" placeholder="Pood"></td>
+            <td><input type="date" id="date" name="date"></td>
+            <td><div id="purchase_amount" name="purchase_amount"></div></td>
+            <td rowspan="2"><button id="save" name="save" type="submit">Salvesta ost</button></td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <table id="purchase_basket">
+        <thead>
+            <tr id="header">
+                <th>Kaup</th>
+                <th>Kategooria</th>
+                <th>Kogus</th>
+                <th>Hind</th>
+                <th>Summa</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr id="basket_row[0]">
+                <td><input type="text" id="data[0][item]" name="data[0][item]" onclick="new_row()"></td>
+                <td><input type="text" id="data[0][category]" name="data[0][category]"></td>
+                <td><input type="number" step="0.001" id="data[0][quantity]" name="data[0][quantity]" oninput="row_amount()"></td>
+                <td><input type="number" step="0.01" id="data[0][price]" name="data[0][price]" oninput="row_amount()"></td>
+                <td><div class="amount" id="data[0][amount]" name="data[0][amount]"></div></td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</form>
+
+<script src="script/purchase.js"></script>

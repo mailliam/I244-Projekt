@@ -1,3 +1,8 @@
+<p><?php if(isset($_SESSION["message"])) {
+    print_r($_SESSION["message"]);
+    unset($_SESSION["message"]);
+} ?></p>
+
 <p>
     Siin on programm, aga ma veel täpselt ei tea, mis siia tuleb.<br>
     Ilmselt näiteks mingi põhitabel, mis kuvab kõigepealt mingi perioodi ostud. <br>

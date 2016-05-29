@@ -7,14 +7,14 @@
 
     <body>
         <?php
-            if (!empty($errors['vaade'])):
+            if (!empty($errors['view'])):
 	           foreach($errors as $e):
 		             echo "$e <br/>";
 	            endforeach;
             endif;
         ?>
 
-        <div class="menyy">
+        <div class="menu">
             <ul>
                 <?php if (empty($_SESSION['login'])):?>
                 <li>

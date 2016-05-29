@@ -1,5 +1,5 @@
 <?php
-    if (!empty($errors['valjad_taitmata']) || !empty($errors['probleem_kasutajanimega'])):
+    if (!empty($errors)):
        foreach($errors as $e):
              echo "$e <br/>";
         endforeach;
@@ -10,24 +10,24 @@
     <input type="hidden" name="action" value="reg">
     <table>
         <tr>
-            <th><label for="eesnimi">Eesnimi</label></th>
-            <td><input type="text" id="eesnimi" name="eesnimi" placeholder="Eesnimi" required></td>
+            <th><label for="firstname">Eesnimi</label></th>
+            <td><input type="text" id="firstname" name="firstname" placeholder="Eesnimi" required></td>
         </tr>
         <tr>
-            <th><label for="perekonnanimi">Perekonnanimi</label></th>
-            <td><input type="text" id="perekonnanimi" name="perekonnanimi" placeholder="Perekonnanimi" required></td>
+            <th><label for="lastname">Perekonnanimi</label></th>
+            <td><input type="text" id="lastname" name="lastname" placeholder="Perekonnanimi" required></td>
         </tr>
         <tr>
-            <th><label for="kasutajanimi">Kasutajanimi</label></th>
-            <td><input type="text" id="kasutajanimi" name="kasutajanimi" placeholder="Kasutajanimi" required></td>
+            <th><label for="username">Kasutajanimi</label></th>
+            <td><input type="text" id="username" name="username" placeholder="Kasutajanimi" required></td>
         </tr>
         <tr>
-            <th><label for="parool">Parool</label></th>
-            <td><input type="password" id="parool" name="parool" placeholder="Parool" required></td>
+            <th><label for="password">Parool</label></th>
+            <td><input type="password" id="password" name="password" placeholder="Parool" required></td>
         </tr>
         <tr>
-            <th><label for="parool2">Korda parooli</label></th>
-            <td><input type="password" id="parool2" name="parool2" placeholder="Parool" required></td>
+            <th><label for="password2">Korda parooli</label></th>
+            <td><input type="password" id="password2" name="password2" placeholder="Parool" required></td>
         </tr>
         <tr colspan="2">
             <td><button type="submit">Registreeri</button></td>

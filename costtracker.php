@@ -4,6 +4,8 @@ session_start();
 
 require('controller_user.php');
 require('model_user.php');
+require('controller_purchase.php');
+require('model_purchase.php');
 
 //Tegevused submittimisel
 
@@ -13,8 +15,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         switch($_POST['action']) {
             case 'reg':
                 if(c_user_register()) {
-                    if(!isset($_SESSION['teade'])) {
-                        $_SESSION['teade'] = "Kasutaja edukalt registreeritud. Jätkamiseks logi palun sisse.";
+                    if(!isset($_SESSION['message'])) {
+                        $_SESSION['message'] = "Kasutaja edukalt registreeritud. Jätkamiseks logi palun sisse.";
                     }
                     header('Location: ' . $_SERVER['PHP_SELF'] . '?view=log');
                 }
@@ -26,11 +28,27 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     };
                     break;
 
-                case 'logout':
-                    if(c_user_logout()) {
-                        header('Location:' . $_SERVER['PHP_SELF']);
+                case 'purchase':
+                    if(c_purchase_rows_add()) {
+                        if(!isset($_SESSION['message'])) {
+                            $_SESSION['message'] = "Ost edukalt salvestatud";
+                        }
+                        header('Location: ' . $_SERVER['PHP_SELF']);
                     }
                     break;
+
+                case 'logout':
+                    if(c_user_logout()) {
+                        header('Location: ' . $_SERVER['PHP_SELF']);
+                    }
+                    break;
+
+                default:
+                    $errors=array();
+                    $errors['view']='Sellist tegevust ei eksisteeri, palun vali, mida teha soovid:';
+                    include_once('view/head.html');
+                    include_once('view/foot.html');
+                    exit;
         }
     }
 
@@ -57,7 +75,7 @@ if(!empty($_GET['view'])) {
         case 'new':
             if(c_user_logged()) {
                 include_once('view/head.html');
-                include_once('view/ost.html');
+                include_once('view/purchase.html');
                 include_once('view/foot.html');
             } else {
                 header('Location: ' . $_SERVER['PHP_SELF'] . '?view=log');
@@ -68,7 +86,7 @@ if(!empty($_GET['view'])) {
 
         default:
             $errors=array();
-            $errors['vaade']='Sellist vaadet ei eksisteeri, palun vali, mida teha soovid:';
+            $errors['view']='Sellist vaadet ei eksisteeri, palun vali, mida teha soovid:';
             include_once('view/head.html');
             include_once('view/foot.html');
             exit;
@@ -80,7 +98,7 @@ if(!empty($_GET['view'])) {
 
     } else {
         include_once('view/head.html');
-        include_once('view/programm.html');
+        include_once('view/program.html');
         include_once('view/foot.html');
     }
 }
