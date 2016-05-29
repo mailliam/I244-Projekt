@@ -18,11 +18,17 @@ function row_amount() {
             price = (cell_price.value);
         }
 
-        var amount = Number((quantity * price).toFixed(2));
+        var amount = (Number(quantity) * Number(price)).toFixed(2);
         purchase_amount = (Number(purchase_amount) + Number(amount)).toFixed(2);
 
         document.getElementById("purchase_amount").innerHTML = purchase_amount;
-        document.getElementById("data[".concat(i,"][amount]")).innerHTML = amount;
+
+        if (amount != 0) {
+            document.getElementById("data[".concat(i,"][amount]")).innerHTML = amount;
+        } else {
+            document.getElementById("data[".concat(i,"][amount]")).innerHTML = "";
+        }
+
         //alert(kogus);
         //alert(hind);
     }
