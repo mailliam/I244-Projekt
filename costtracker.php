@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     break;
 
                 case 'purchase':
-                    
+
                     if(c_purchase_rows_add()) {
                         if(!isset($_SESSION['message'])) {
                             $_SESSION['message'] = "Ost edukalt salvestatud";

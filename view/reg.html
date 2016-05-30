@@ -11,15 +11,21 @@
     <table>
         <tr>
             <th><label for="firstname">Eesnimi</label></th>
-            <td><input type="text" id="firstname" name="firstname" placeholder="Eesnimi" required></td>
+            <td><input type="text" id="firstname" name="firstname" placeholder="Eesnimi"
+                <?php if(!empty($_POST['firstname']))
+                echo "value=\"".htmlspecialchars($_POST['firstname'])."\"";?> required></td>
         </tr>
         <tr>
             <th><label for="lastname">Perekonnanimi</label></th>
-            <td><input type="text" id="lastname" name="lastname" placeholder="Perekonnanimi" required></td>
+            <td><input type="text" id="lastname" name="lastname" placeholder="Perekonnanimi"
+                <?php if(!empty($_POST['lastname']))
+                echo "value=\"".htmlspecialchars($_POST['lastname'])."\"";?> required></td>
         </tr>
         <tr>
             <th><label for="username">Kasutajanimi</label></th>
-            <td><input type="text" id="username" name="username" placeholder="Kasutajanimi" required></td>
+            <td><input type="text" id="username" name="username" placeholder="Kasutajanimi"
+                <?php if(!empty($_POST['username']))
+                echo "value=\"".htmlspecialchars($_POST['username'])."\"";?> required></td>
         </tr>
         <tr>
             <th><label for="password">Parool</label></th>
