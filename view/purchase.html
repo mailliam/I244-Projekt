@@ -14,11 +14,10 @@
             var p_amount = $('#purchase_amount').text();
             $(this).append("<input type='hidden' name='purchase_amount' value=' "+p_amount+" '/>");
 
-                $(".amount").each(function(index) {
-                    var r_amount = $('.amount').text();
-                    $(this).append("<input type='hidden' name='data["+index+"][amount]' value=' "+r_amount+" '/>");
-                });
-
+            $('.amount').each(function(index) {
+                var r_amount = $(this).text();
+                $(this).append("<input type='hidden' name='data["+index+"][amount]' value=' "+r_amount+" '/>");
+            });
         });
     });
 

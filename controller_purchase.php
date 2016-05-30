@@ -77,9 +77,10 @@ function c_purchase_rows_add() { //See funktsioon on hetkel jama, testin
             $price = $data['price'];
             $amount = $data['amount'];
             if(!empty($item) && !empty($category) && !empty($quantity) && !empty($price) && !empty($amount)) {
-                return model_purchase_rows_add($purchase_id, $item, $category, $quantity, $price, $amount);
+                model_purchase_rows_add($purchase_id, $item, $category, $quantity, $price, $amount);
             }
         }
+        return true;
     }
 }
 
