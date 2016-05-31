@@ -1,0 +1,21 @@
+<p>
+    Päring:
+
+    <form id="query" method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
+            <input type="hidden" name="action" value="query">
+
+            <table>
+                <tr>
+                    <td>Ostja</td>
+
+                    <td>
+                        <select name="getbuyer">
+                            <?php foreach(model_purchase_buyer_get(c_user_logged()) as $row): ?>
+                             <option value="<?= htmlspecialchars($row['buyer']); ?>"> <?= htmlspecialchars($row['buyer']); ?> </option>
+                             <?php endforeach; ?>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+    </form>
+</p>

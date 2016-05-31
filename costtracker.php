@@ -85,6 +85,18 @@ if(!empty($_GET['view'])) {
 
             break;
 
+            case 'query':
+                if(c_user_logged()) {
+                    include_once('view/head.html');
+                    include_once('view/query.html');
+                    include_once('view/foot.html');
+                } else {
+                    header('Location: ' . $_SERVER['PHP_SELF'] . '?view=log');
+                    exit;
+                }
+
+                break;
+
         default:
             $errors=array();
             $errors['view']='Sellist vaadet ei eksisteeri, palun vali, mida teha soovid:';

@@ -60,5 +60,45 @@ function model_purchase_item_add($item, $category, $user_id) {
     return $id;
 }
 
+function model_purchase_header_get($id) {
+    global $conn;
+
+    if(!empty($_SESSION['login'])) {
+        $id = $_SESSION['login'];
+    }
+
+    $query = "SELECT * FROM mkeerus_pr_purchase WHERE user_id = $id";
+    $result = mysqli_query($conn, $query); //Kursorobjekt
+
+    $rows = array(); //UUs massiiv ja loeme kõik tulemused sinna RecursiveCachingIterator
+
+    if($result) {
+        while($row = mysqli_fetch_assoc($result)) { //Kui annab väljundi, siis on true
+            $rows[] = $row;
+        }
+    }
+    return $rows;
+}
+
+function model_purchase_buyer_get($id) {
+    global $conn;
+
+    if(!empty($_SESSION['login'])) {
+        $id = $_SESSION['login'];
+    }
+
+    $query = "SELECT DISTINCT buyer FROM mkeerus_pr_purchase WHERE user_id = $id ORDER BY buyer ASC";
+    $result = mysqli_query($conn, $query); //Kursorobjekt
+
+    $rows = array(); //UUs massiiv ja loeme kõik tulemused sinna RecursiveCachingIterator
+
+    if($result) {
+        while($row = mysqli_fetch_assoc($result)) { //Kui annab väljundi, siis on true
+            $rows[] = $row;
+        }
+    }
+    return $rows;
+}
+
 
 ?>
