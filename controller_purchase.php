@@ -8,7 +8,7 @@ function c_purchase_header_add() {
 
         $buyer = $_POST['buyer'];
         $store = $_POST['store'];
-        $date = $_POST['date'];
+        $date = date('Y-m-d',strtotime($_POST['date'])); //Kuupäeva formaadi muutmine mysql jaoks: http://stackoverflow.com/questions/12120433/php-mysql-insert-date-format
         $purchase_amount = $_POST['purchase_amount'];
         $user_id =  $_SESSION['login'];
         return model_purchase_header_add($buyer, $store, $date, $purchase_amount, $user_id);

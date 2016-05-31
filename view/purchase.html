@@ -7,6 +7,18 @@
 ?>
 
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+
+<!--http://api.jqueryui.com/datepicker/-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+$(function() {
+  $( "#date" ).datepicker();
+});
+
+</script>
+
 <script>
 //Script, et saaks div elemendi seest postida: http://stackoverflow.com/questions/21621568/post-for-text-in-div-elements
     $(document).ready(function() {
@@ -23,6 +35,7 @@
 
 </script>
 
+
 <form id="add_purchase" method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
     <input type="hidden" name="action" value="purchase">
     <table id="purchase_header">
@@ -35,7 +48,7 @@
         <tr>
             <td><input type="text" id="buyer" name="buyer" placeholder="Ostja"></td>
             <td><input type="text" id="store" name="store" placeholder="Pood"></td>
-            <td><input type="date" id="date" name="date"></td>
+            <td><input type="text" id="date" name="date"></td>
             <td><div id="purchase_amount" name="purchase_amount"></div></td>
             <td rowspan="2"><button id="save" name="save" type="submit">Salvesta ost</button></td>
         </tr>
