@@ -1,6 +1,7 @@
 <?php
 
 function c_user_register() {
+//Kontrollib registreerimisvormi täidetuse õigsust ning annab mudelile käsu kasutaja registreerida
 
     $errors = array();
 
@@ -47,6 +48,7 @@ function c_user_register() {
 }
 
 function c_user_login() {
+//Kontrollib sisselogimisvormi täidetuse korrektsust, kontrollib andmete õigsust, logib sisse
     $errors = array();
 
     if(empty($_POST['username']) || empty($_POST['password'])) {
@@ -78,6 +80,7 @@ function c_user_login() {
 }
 
 function c_user_logged() {
+//Kontrollib, kas kasutaja on sisselogitud
     if(empty($_SESSION['login'])) {
         return false;
     }
@@ -86,6 +89,7 @@ function c_user_logged() {
 
 
 function c_user_logout() {
+//Logib kasutaja välja
     if(isset($_COOKIE[session_name()])) { //Kui cookie on seatud sessiooni nimega
         setcookie(session_name(), '', time()-42000, '/');
     }

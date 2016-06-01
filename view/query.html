@@ -1,15 +1,34 @@
 <div class="contents">
-    Päring:
+
+    <p class="errors">
+        <?php
+            if (!empty($errors)):
+               foreach($errors as $e):
+                     echo "$e <br/>";
+                endforeach;
+            endif;
+        ?>
+    </p>
+    
+    <p>
+        <?php if(isset($_SESSION["message"])) {
+            print_r($_SESSION["message"]);
+            unset($_SESSION["message"]);
+        } ?>
+    </p>
+
+    Päringu koostamiseks vali nimekirjast ostja ning kauba kategooria:
 
     <form id="query" method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
             <input type="hidden" name="action" value="query">
+            <input type="hidden" name="csrf token" value="<?= $_SESSION['csrf_token']; ?>">
 
             <table>
                 <tr>
                     <td>Ostja</td>
 
                     <td>
-                        <select name="buyer">
+                        <select name="buyer2">
                             <?php foreach(model_purchase_buyer_get(c_user_logged()) as $row): ?>
                              <option value="<?= htmlspecialchars($row['buyer']); ?>"> <?= htmlspecialchars($row['buyer']); ?> </option>
                              <?php endforeach; ?>
@@ -19,9 +38,8 @@
 
                 <tr>
                     <td>Kategooria</td>
-
                     <td>
-                        <select name="category">
+                        <select name="category2">
                             <?php foreach(model_purchase_category_get(c_user_logged()) as $row): ?>
                              <option value="<?= htmlspecialchars($row['category']); ?>"> <?= htmlspecialchars($row['category']); ?> </option>
                              <?php endforeach; ?>
@@ -30,9 +48,34 @@
                 </tr>
 
                 <tr>
-                    <td rowspan="2"><button id="query" name="query" type="submit">Vaata oste</button></td>
+                    <td rowspan="2"><button type="submit" id="query" name="query" type="submit">Vaata ostusid</button></td>
                 </tr>
+            </table>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>Kaup</td>
+                        <td>Summa</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        if(!empty($_POST['query'])) {
+                            foreach(c_purchase_query() as $row): ?>
+                                <tr>
+                                    <td> <?= htmlspecialchars($row['item']); ?> </td>
+                                    <td> <?= htmlspecialchars($row['amount']); ?> </td>
+                                </tr>
+
+                            <?php endforeach; ?>
+                        <?php } ?>
+
+
+                </tbody>
 
             </table>
+
+
     </form>
 </div>

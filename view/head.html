@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Registreerimine</title>
+        <title><?= htmlspecialchars($title) ?></title>
         <link rel="stylesheet" type="text/css" href="style/style.css">
     </head>
 
@@ -24,11 +24,12 @@
                     <a href="<?= $_SERVER['PHP_SELF'];?>?view=new">Uus ost</a>
                 </li>
                 <li>
-                    <a href="<?= $_SERVER['PHP_SELF'];?>?view=query">Päringud</a>
+                    <a href="<?= $_SERVER['PHP_SELF'];?>?view=queries">Päringud</a>
                 </li>
                 <li>
                     <form method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
                         <input type="hidden" name="action" value="logout">
+                        <input type="hidden" name="csrf token" value="<?= $_SESSION['csrf_token']; ?>">
                         <button id="logout" type="submit">Logi välja</button>
                     </form>
                 </li>

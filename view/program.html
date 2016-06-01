@@ -11,17 +11,17 @@
     <table>
         <thead>
             <tr>
-                <td>Ostja</td>
-                <td>Kuupäev</td>
-                <td>Summa</td>
+                <th>Ostja</th>
+                <th>Kuupäev</th>
+                <th>Summa</th>
             </tr>
         </thead>
         <tbody>
             <?php
             $q = model_purchase_header_get(c_user_logged());
-            if(!$q) {
-                echo "Pole veel ühtegi ostu.";
-            } else {
+            if(!$q) { ?>
+                <tr><td> <?php echo "Pole veel ühtegi ostu."; ?> </td></tr>
+            <?php } else {
                 foreach($q as $row): ?>
                     <tr>
                         <td> <?= htmlspecialchars($row['buyer']); ?> </td>

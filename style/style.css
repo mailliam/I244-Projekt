@@ -7,6 +7,7 @@ body {
 
 button {
     border-radius: 1em;
+    font-family: Arial, sans-serif;
 }
 
 button:hover, .menu ul li a:hover {
@@ -28,26 +29,44 @@ button:hover, .menu ul li a:hover {
 .menu ul {
     list-style-type: none;
     display: flex;
-    border: 1px solid green;
 }
 
 .menu ul li, #logout {
     background-color: #206196;
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    text-align: center;
+    width: 8em;
     flex-wrap: wrap;
     flex-grow: 1;
-    border: 1px solid red;
     border-radius: 1em;
-    padding: 5px 10px;
+    padding: 0px;
     margin-left: 5px;
     margin-right: 5px;
 }
 
+#logout {
+    border: 2px solid #206196;
+}
+
 .menu ul li a {
-    color: #80B1DA;
+    color: black;
     text-decoration: none;
 }
 
 .contents {
-    border: 2px solid blue;
     margin: 4em;
+}
+
+table {
+    border-spacing: 0;
+}
+
+th, td {
+    border-top: 1px solid #AAAAAA;
+    padding: 5px 10px;
+}
+
+th {
+    font-weight: bold;
 }

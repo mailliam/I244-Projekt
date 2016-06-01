@@ -10,8 +10,9 @@ mysqli_query($conn, 'SET CHARACTER SET UTF8') or
     die('Error, ei saa andmebaasi charsetti seatud');
 
 function model_user_add($firstname, $lastname, $username, $password) {
+//Lisab kasutaja andmebaasi
     global $conn;
-    $hash = password_hash($password, PASSWORD_DEFAULT); //password_hash kujutab endast sellist räsi, mida peetakse parasjagu turvalisek, ei ole staatilines
+    $hash = password_hash($password, PASSWORD_DEFAULT);
     $query = 'INSERT INTO mkeerus_pr_users (firstname, lastname, username, password) VALUES (?,?,?,?)';
     $stmt = mysqli_prepare($conn, $query);
 
@@ -23,6 +24,7 @@ function model_user_add($firstname, $lastname, $username, $password) {
 }
 
 function model_user_get($username, $password) {
+//Kontrollib kasutaja parooli õigsust
     global $conn;
 
     $query = 'SELECT id, password FROM mkeerus_pr_users WHERE username=? LIMIT 1';
@@ -41,6 +43,7 @@ function model_user_get($username, $password) {
 }
 
 function model_user_exists($username) {
+//Kontrollib, kas kasutaja on olemas, et ei lisaks topelt kasutajaid
     global $conn;
     $query = 'SELECT id FROM mkeerus_pr_users WHERE username=? LIMIT 1';
     $stmt = mysqli_prepare($conn, $query);

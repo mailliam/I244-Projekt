@@ -3,8 +3,9 @@
 $errors = array();
 
 function c_purchase_header_add() {
+//Annab mudelile korralduse ostupäis andmbaasi lisada
 
-    if(c_user_logged() && check_insertion_correctness()) {
+    if(c_user_logged() && check_insertion_correctness()) { //Täidetuse kontroll on tehtud juba sisestuse õigsuse kontrolliga
 
         $buyer = $_POST['buyer'];
         $store = $_POST['store'];
@@ -19,6 +20,7 @@ function c_purchase_header_add() {
 }
 
 function check_insertion_correctness() {
+//Kontrollib, kas väljad on õigesti täidetud
 
     if(empty($_POST['buyer']) || empty($_POST['store']) ||
     empty($_POST['date']) || empty($_POST['purchase_amount'])) {
@@ -49,21 +51,24 @@ function check_insertion_correctness() {
             if(empty($item) && empty($category) && empty($quantity) && empty($price) && empty($amount) ||
             !empty($item) && !empty($category) && !empty($quantity) && !empty($price) && !empty($amount)) {
             //...Kui on ainult ridu, mis täielikult tühjad või täielikult täidetud
-            return true;
+
             } else {
-                $errors[] = 'Read poolikult täidetud. Palun täida või kustutad poolikud andmed.';
+                $errors[] = 'Read poolikult täidetud. Palun täida poolikud või kustuta ebavajalikud andmed.';
                 include_once('view/head.html');
                 include_once('view/purchase.html');
                 include_once('view/foot.html');
                 return false;
                 }
+                return true;
             }
+
         }
     }
 
 
 
-function c_purchase_rows_add() { //See funktsioon on hetkel jama, testin
+function c_purchase_rows_add() {
+//Annab mudelile korralduse osturead andmebaasi lisada
     $errors = array();
     $purchase_id = c_purchase_header_add();
 
@@ -72,8 +77,7 @@ function c_purchase_rows_add() { //See funktsioon on hetkel jama, testin
 
     } else {
 
-        print_r($_POST);
-        foreach ($_POST['data'] as $data) {
+        foreach ($_POST['data'] as $data) { //Täidetuse kontroll on tehtud juba sisestuse õigsuse kontrolliga
             $item = $data['item'];
             $category = $data['category'];
             $quantity = $data['quantity'];
@@ -81,7 +85,7 @@ function c_purchase_rows_add() { //See funktsioon on hetkel jama, testin
             $amount = $data['amount'];
             $user_id =  $_SESSION['login'];
 
-            if(!empty($item) && !empty($category) && !empty($quantity) && !empty($price) && !empty($amount)) {
+            if(!empty($item) && !empty($category) && !empty($quantity) && !empty($price) && !empty($amount)) { //Tühje kirjeid ei lisata
                 model_purchase_rows_add($purchase_id, $item, $category, $quantity, $price, $amount, $user_id);
 
                 if(!c_purchase_item_exists($item)) {
@@ -95,6 +99,7 @@ function c_purchase_rows_add() { //See funktsioon on hetkel jama, testin
 }
 
 function c_purchase_item_exists($item) {
+//Kontrollib, kas toodet ostetakse esimest korda, sel juhul lisab toote andmebaasi (vajalik hilisemaks automaatseks kategooria täitmiseks)
     if(!check_insertion_correctness() || !c_user_logged()) { //Lisaks ka, kas päise lisamine õnnestus
         return false;
 

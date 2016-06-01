@@ -1,6 +1,7 @@
 var row = 0;
 
 function row_amount() {
+//Arvutab sisestatavatele ridadele summad ning kogu ostu summa
 //Kasutatud õpetust http://www.javascript-coder.com/javascript-form/javascript-calculator-script.phtml
     var purchase_amount = 0;
     for (var i = 0; i < row+1; i++) {
@@ -32,6 +33,7 @@ function row_amount() {
 }
 
 function new_row() {
+//Loob kauba väljale klikkimisel uue rea
 //Kasutatud õpetust http://www.w3schools.com/jsref/met_table_insertrow.asp
 //Nutikam massiiviväljade nimetamise viis kui see, mille peale ise tulin, pärineb:
 //http://stackoverflow.com/questions/2433727/submitting-a-multidimensional-array-via-post-with-php
@@ -77,7 +79,6 @@ function new_row() {
     sisu[1].setAttribute("name", "data[".concat(row,"][category]"));
     sisu[2].setAttribute("name", "data[".concat(row,"][quantity]"));
     sisu[3].setAttribute("name", "data[".concat(row,"][price]"));
-    sisu[4].setAttribute("name", "data[".concat(row,"][amount]"));
 
     sisu[0].setAttribute("id", "data[".concat(row,"][item]"));
     sisu[1].setAttribute("id", "data[".concat(row,"][category]"));
