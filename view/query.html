@@ -1,4 +1,4 @@
-<p>
+<div class="contents">
     Päring:
 
     <form id="query" method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
@@ -9,13 +9,30 @@
                     <td>Ostja</td>
 
                     <td>
-                        <select name="getbuyer">
+                        <select name="buyer">
                             <?php foreach(model_purchase_buyer_get(c_user_logged()) as $row): ?>
                              <option value="<?= htmlspecialchars($row['buyer']); ?>"> <?= htmlspecialchars($row['buyer']); ?> </option>
                              <?php endforeach; ?>
                         </select>
                     </td>
                 </tr>
+
+                <tr>
+                    <td>Kategooria</td>
+
+                    <td>
+                        <select name="category">
+                            <?php foreach(model_purchase_category_get(c_user_logged()) as $row): ?>
+                             <option value="<?= htmlspecialchars($row['category']); ?>"> <?= htmlspecialchars($row['category']); ?> </option>
+                             <?php endforeach; ?>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td rowspan="2"><button id="query" name="query" type="submit">Vaata oste</button></td>
+                </tr>
+
             </table>
     </form>
-</p>
+</div>

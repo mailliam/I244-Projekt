@@ -28,9 +28,6 @@ function row_amount() {
         } else {
             document.getElementById("data[".concat(i,"][amount]")).innerHTML = "";
         }
-
-        //alert(kogus);
-        //alert(hind);
     }
 }
 

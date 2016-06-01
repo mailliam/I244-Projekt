@@ -100,5 +100,25 @@ function model_purchase_buyer_get($id) {
     return $rows;
 }
 
+function model_purchase_category_get($id) {
+    global $conn;
+
+    if(!empty($_SESSION['login'])) {
+        $id = $_SESSION['login'];
+    }
+
+    $query = "SELECT DISTINCT category FROM mkeerus_pr_items WHERE user_id = $id ORDER BY category ASC";
+    $result = mysqli_query($conn, $query); //Kursorobjekt
+
+    $rows = array(); //UUs massiiv ja loeme kõik tulemused sinna RecursiveCachingIterator
+
+    if($result) {
+        while($row = mysqli_fetch_assoc($result)) { //Kui annab väljundi, siis on true
+            $rows[] = $row;
+        }
+    }
+    return $rows;
+}
+
 
 ?>

@@ -3,16 +3,10 @@
     <head>
         <meta charset="utf-8">
         <title>Registreerimine</title>
+        <link rel="stylesheet" type="text/css" href="style/style.css">
     </head>
 
     <body>
-        <?php
-            if (!empty($errors['view'])):
-	           foreach($errors as $e):
-		             echo "$e <br/>";
-	            endforeach;
-            endif;
-        ?>
 
         <div class="menu">
             <ul>
@@ -32,13 +26,26 @@
                 <li>
                     <a href="<?= $_SERVER['PHP_SELF'];?>?view=query">Päringud</a>
                 </li>
+                <li>
+                    <form method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
+                        <input type="hidden" name="action" value="logout">
+                        <button id="logout" type="submit">Logi välja</button>
+                    </form>
+                </li>
                 <?php endif; ?>
             </ul>
         </div>
 
-        <?php if (!empty($_SESSION['login'])):?>
-        <form method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
-            <input type="hidden" name="action" value="logout">
-            <button type="submit">Logi välja</button>
-        </form>
-        <?php endif; ?>
+        <div class="contents">
+
+            <p class="errors">
+                <?php
+                    if (!empty($errors['view'])):
+                       foreach($errors as $e):
+                             echo "$e <br/>";
+                        endforeach;
+                    endif;
+                ?>
+            </p>
+
+        </div>

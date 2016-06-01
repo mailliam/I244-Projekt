@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    padding-top: 15px;
+    background-color: #B2D3EF;
+}
+
+button {
+    border-radius: 1em;
+}
+
+button:hover, .menu ul li a:hover {
+    background-color: #206196;
+    color: #B2D3EF;
+}
+
+.errors {
+    color: red;
+}
+
+.menu {
+    margin-bottom: 10px;
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+
+.menu ul {
+    list-style-type: none;
+    display: flex;
+    border: 1px solid green;
+}
+
+.menu ul li, #logout {
+    background-color: #206196;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    border: 1px solid red;
+    border-radius: 1em;
+    padding: 5px 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.menu ul li a {
+    color: #80B1DA;
+    text-decoration: none;
+}
+
+.contents {
+    border: 2px solid blue;
+    margin: 4em;
+}

@@ -1,17 +1,12 @@
-<p><?php if(isset($_SESSION["message"])) {
-    print_r($_SESSION["message"]);
-    unset($_SESSION["message"]);
-} ?></p>
+<div class="contents">
 
+    <p>
+        <?php if(isset($_SESSION["message"])) {
+            print_r($_SESSION["message"]);
+            unset($_SESSION["message"]);
+        } ?>
+    </p>
 
-
-<p>
-    Siin on programm, aga ma veel täpselt ei tea, mis siia tuleb.<br>
-    Ilmselt näiteks mingi põhitabel, mis kuvab kõigepealt mingi perioodi ostud. <br>
-    Peab vaatama, et lingid oleks sisselogitud kasutajal teistsugused ning sisaldaksid ka ostu lisamise võimalust.
-</p>
-
-<p>
     Sinu sisestatud on järgmised ostud:
     <table>
         <thead>
@@ -22,16 +17,22 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach(model_purchase_header_get(c_user_logged()) as $row): ?>
+            <?php
+            $q = model_purchase_header_get(c_user_logged());
+            if(!$q) {
+                echo "Pole veel ühtegi ostu.";
+            } else {
+                foreach($q as $row): ?>
+                    <tr>
+                        <td> <?= htmlspecialchars($row['buyer']); ?> </td>
+                        <td> <?= htmlspecialchars($row['purchase_date']); ?> </td>
+                        <td> <?= htmlspecialchars($row['amount']); ?> </td>
+                    </tr>
 
-            <tr>
-                <td> <?= htmlspecialchars($row['buyer']); ?> </td>
-                <td> <?= htmlspecialchars($row['purchase_date']); ?> </td>
-                <td> <?= htmlspecialchars($row['amount']); ?> </td>
-            </tr>
+                <?php endforeach; ?>
+            <?php } ?>
 
-            <?php endforeach; ?>
-        <tbody>
+        </tbody>
     </table>
 
-</p>
+</div>

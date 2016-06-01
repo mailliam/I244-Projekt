@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 default:
                     $errors=array();
-                    $errors['view']='Sellist tegevust ei eksisteeri, palun vali, mida teha soovid:';
+                    $errors['view']='Sellist tegevust ei eksisteeri, palun vali menüüst, mida teha soovid.';
                     include_once('view/head.html');
                     include_once('view/foot.html');
                     exit;

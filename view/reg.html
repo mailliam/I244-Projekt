@@ -1,42 +1,48 @@
-<?php
-    if (!empty($errors)):
-       foreach($errors as $e):
-             echo "$e <br/>";
-        endforeach;
-    endif;
-?>
+<div class="contents">
 
-<form method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
-    <input type="hidden" name="action" value="reg">
-    <table>
-        <tr>
-            <th><label for="firstname">Eesnimi</label></th>
-            <td><input type="text" id="firstname" name="firstname" placeholder="Eesnimi"
-                <?php if(!empty($_POST['firstname']))
-                echo "value=\"".htmlspecialchars($_POST['firstname'])."\"";?> required></td>
-        </tr>
-        <tr>
-            <th><label for="lastname">Perekonnanimi</label></th>
-            <td><input type="text" id="lastname" name="lastname" placeholder="Perekonnanimi"
-                <?php if(!empty($_POST['lastname']))
-                echo "value=\"".htmlspecialchars($_POST['lastname'])."\"";?> required></td>
-        </tr>
-        <tr>
-            <th><label for="username">Kasutajanimi</label></th>
-            <td><input type="text" id="username" name="username" placeholder="Kasutajanimi"
-                <?php if(!empty($_POST['username']))
-                echo "value=\"".htmlspecialchars($_POST['username'])."\"";?> required></td>
-        </tr>
-        <tr>
-            <th><label for="password">Parool</label></th>
-            <td><input type="password" id="password" name="password" placeholder="Parool" required></td>
-        </tr>
-        <tr>
-            <th><label for="password2">Korda parooli</label></th>
-            <td><input type="password" id="password2" name="password2" placeholder="Parool" required></td>
-        </tr>
-        <tr>
-            <td><button type="submit">Registreeri</button></td>
-        </tr>
-    </table>
-</form>
+    <p class="errors">
+        <?php
+            if (!empty($errors)):
+               foreach($errors as $e):
+                     echo "$e <br/>";
+                endforeach;
+            endif;
+        ?>
+    </p>
+
+    <form method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
+        <input type="hidden" name="action" value="reg">
+        <table>
+            <tr>
+                <th><label for="firstname">Eesnimi</label></th>
+                <td><input type="text" id="firstname" name="firstname" placeholder="Eesnimi"
+                    <?php if(!empty($_POST['firstname']))
+                    echo "value=\"".htmlspecialchars($_POST['firstname'])."\"";?> required></td>
+            </tr>
+            <tr>
+                <th><label for="lastname">Perekonnanimi</label></th>
+                <td><input type="text" id="lastname" name="lastname" placeholder="Perekonnanimi"
+                    <?php if(!empty($_POST['lastname']))
+                    echo "value=\"".htmlspecialchars($_POST['lastname'])."\"";?> required></td>
+            </tr>
+            <tr>
+                <th><label for="username">Kasutajanimi</label></th>
+                <td><input type="text" id="username" name="username" placeholder="Kasutajanimi"
+                    <?php if(!empty($_POST['username']))
+                    echo "value=\"".htmlspecialchars($_POST['username'])."\"";?> required></td>
+            </tr>
+            <tr>
+                <th><label for="password">Parool</label></th>
+                <td><input type="password" id="password" name="password" placeholder="Parool" required></td>
+            </tr>
+            <tr>
+                <th><label for="password2">Korda parooli</label></th>
+                <td><input type="password" id="password2" name="password2" placeholder="Parool" required></td>
+            </tr>
+            <tr>
+                <td><button type="submit">Registreeri</button></td>
+            </tr>
+        </table>
+    </form>
+
+</div>
