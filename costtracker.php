@@ -36,20 +36,33 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     break;
 
                 case 'purchase':
-                    if(c_purchase_rows_add()) {
-                        if(!isset($_SESSION['message'])) {
-                            $_SESSION['message'] = "Ost edukalt salvestatud";
+                    if(c_user_logged()) {
+                        if(c_purchase_rows_add()) {
+                            if(!isset($_SESSION['message'])) {
+                                $_SESSION['message'] = "Ost edukalt salvestatud";
+                            }
+                            header('Location: ' . $_SERVER['PHP_SELF']);
                         }
-                        header('Location: ' . $_SERVER['PHP_SELF']);
+                    } else {
+                        $errors = array();
+                        $errors[]='Ostu sisestamiseks pead olema sisse logitud.';
+                        header('Location: ' . $_SERVER['PHP_SELF'] . '?view=log');
+                        exit;
                     }
                     break;
 
                 case 'query':
-                    if(!isset($_SESSION['message'])) {
-                        $_SESSION['message'] = "Teenus ei ole hetkel kättesaadav.";
+                    if(c_user_logged()) {
+                        c_purchase_query();
+                        include_once('view/head.html');
+                        include_once('view/query.html');
+                        include_once('view/foot.html');
+                    } else {
+                        $errors = array();
+                        $errors[]='Päringute sooritamiseks pead olema sisse logitud.';
+                        header('Location: ' . $_SERVER['PHP_SELF'] . '?view=log');
+                        exit;
                     }
-                    header('Location: ' . $_SERVER['PHP_SELF'] . '?view=queries');
-
                     break;
 
                 case 'logout':
@@ -77,15 +90,15 @@ if(!empty($_GET['view'])) {
     switch($_GET['view']) {
 
         case 'log':
-        if(!c_user_logged()) {
-            $title = 'Sisselogimine';
-            include_once('view/head.html');
-            include_once('view/log.html');
-            include_once('view/foot.html');
-        } else {
-            header('Location: ' . $_SERVER['PHP_SELF']);
-        }
-        break;
+            if(!c_user_logged()) {
+                $title = 'Sisselogimine';
+                include_once('view/head.html');
+                include_once('view/log.html');
+                include_once('view/foot.html');
+            } else {
+                header('Location: ' . $_SERVER['PHP_SELF']);
+            }
+            break;
 
         case 'reg':
             if(!c_user_logged()) {

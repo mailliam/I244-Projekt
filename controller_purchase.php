@@ -65,6 +65,28 @@ function check_insertion_correctness() {
         }
     }
 
+function c_purchase_query() {
+//Annab mudelile korralduse leida valitud ostja ostud ja valitud kategooriasse kuuluvad kaubad
+    $errors = array();
+    if(c_user_logged() && !empty($_POST['buyer2']) && !empty($_POST['category2']))  {
+        $buyer2 = $_POST['buyer2'];
+        $category2 = $_POST['category2'];
+        $user = c_user_logged();
+        $pid = model_purchase_id($user, $buyer2);
+        $list = array();
+        foreach ($pid as $p) {
+            $list[] = model_purchase_query($p, $category2);
+        }
+        return $list;
+
+    } else {
+        $errors[] = 'Palun vali nii ostja kui kategooria';
+        include_once('view/head.html');
+        include_once('view/query.html');
+        include_once('view/foot.html');
+        return false;
+    }
+}
 
 
 function c_purchase_rows_add() {
@@ -92,7 +114,6 @@ function c_purchase_rows_add() {
                     model_purchase_item_add($item, $category, $user_id);
                 }
             }
-
         }
         return true;
     }

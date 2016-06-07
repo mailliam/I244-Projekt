@@ -9,7 +9,7 @@
             endif;
         ?>
     </p>
-    
+
     <p>
         <?php if(isset($_SESSION["message"])) {
             print_r($_SESSION["message"]);
@@ -21,7 +21,7 @@
 
     <form id="query" method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
             <input type="hidden" name="action" value="query">
-            <input type="hidden" name="csrf token" value="<?= $_SESSION['csrf_token']; ?>">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
 
             <table>
                 <tr>
@@ -48,7 +48,7 @@
                 </tr>
 
                 <tr>
-                    <td rowspan="2"><button type="submit" id="query" name="query" type="submit">Vaata ostusid</button></td>
+                    <td><button type="submit" id="queries" name="query">Vaata ostusid</button></td>
                 </tr>
             </table>
 
@@ -61,19 +61,18 @@
                 </thead>
                 <tbody>
                     <?php
-                        if(!empty($_POST['query'])) {
-                            foreach(c_purchase_query() as $row): ?>
-                                <tr>
-                                    <td> <?= htmlspecialchars($row['item']); ?> </td>
-                                    <td> <?= htmlspecialchars($row['amount']); ?> </td>
-                                </tr>
+                        if(!empty($_POST['action']) && c_purchase_query()) {
+                            foreach(c_purchase_query() as $purchase): ?>
+                                <?php foreach($purchase as $row): ?>
+                                    <tr>
+                                        <td> <?= htmlspecialchars($row['item']); ?> </td>
+                                        <td> <?= htmlspecialchars($row['amount']); ?> </td>
+                                    </tr>
 
+                                <?php endforeach; ?>
                             <?php endforeach; ?>
                         <?php } ?>
-
-
                 </tbody>
-
             </table>
 
 

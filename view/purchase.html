@@ -44,7 +44,7 @@
 
     <form id="add_purchase" method="POST" action="<?= $_SERVER['PHP_SELF']; ?>">
         <input type="hidden" name="action" value="purchase">
-        <input type="hidden" name="csrf token" value="<?= $_SESSION['csrf_token']; ?>">
+        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
         <table id="purchase_header">
             <tr>
                 <th><label for="buyer">Ostja</label></th>

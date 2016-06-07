@@ -90,18 +90,55 @@ function model_purchase_buyer_get($id) {
     global $conn;
 
     if(!empty($_SESSION['login'])) {
-        $id = $_SESSION['login'];
+        $id = mysqli_real_escape_string($conn, $_SESSION['login']);
     }
 
     $query = "SELECT DISTINCT buyer FROM mkeerus_pr_purchase WHERE user_id = $id ORDER BY buyer ASC";
     $result = mysqli_query($conn, $query);
 
-    $rows = array();
+    $buyers = array();
 
     if($result) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $rows[] = $row;
+        while($b = mysqli_fetch_assoc($result)) {
+            $buyers[] = $b;
         }
+    }
+    return $buyers;
+}
+
+function model_purchase_id($user, $buyer) {
+//Leiab konkreetse kasutaja ja ostja ostu id
+    global $conn;
+    $query = 'SELECT id FROM mkeerus_pr_purchase WHERE user_id = ? AND buyer = ?';
+
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, 'is', $user, $buyer);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $id);
+
+    $rows = array();
+    while(mysqli_stmt_fetch($stmt)) {
+        $rows[] = $id;
+    }
+    return $rows;
+}
+
+function model_purchase_query($p, $category) {
+//Leiab konkreetse ostja konkreetse kategooria ostud
+    global $conn;
+    $query = 'SELECT item, amount FROM mkeerus_pr_purchase_rows WHERE purchase_id = ? AND category = ?';
+
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, 'is', $p, $category);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $item, $amount);
+
+    $rows = array();
+    while(mysqli_stmt_fetch($stmt)) {
+        $rows[] = array(
+            'item' => $item,
+            'amount' => $amount,
+        );
     }
     return $rows;
 }
@@ -111,7 +148,7 @@ function model_purchase_category_get($id) {
     global $conn;
 
     if(!empty($_SESSION['login'])) {
-        $id = $_SESSION['login'];
+        $id = mysqli_real_escape_string($conn, $_SESSION['login']);
     }
 
     $query = "SELECT DISTINCT category FROM mkeerus_pr_items WHERE user_id = $id ORDER BY category ASC";
